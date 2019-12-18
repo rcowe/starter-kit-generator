@@ -39,7 +39,9 @@ gulp.task('default', (cb) => {
 	gulp
 		.watch([
 			'./public/**/*',
-			'./public/*'
+			'./public/*',
+			'public/js/**/.#*js',
+			'public/css/**/.#*css'
 		])
 		.on('change', reload);
 		cb()

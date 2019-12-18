@@ -53,8 +53,8 @@ gulp.task('watch-proxy', (cb) => {
 		.watch([
 			'./public/**/*',
 			'./public/*',
-			'!public/js/**/.#*js',
-			'!public/css/**/.#*css'
+			'public/js/**/.#*js',
+			'public/css/**/.#*css'
 		])
 		.on('change', reload);
 		cb()

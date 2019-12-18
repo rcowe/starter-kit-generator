@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/js/main.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./frontEndSrc/js/main.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/js/main.js":
-/*!***************************!*\
-  !*** ./assets/js/main.js ***!
-  \***************************/
+/***/ "./frontEndSrc/js/main.js":
+/*!********************************!*\
+  !*** ./frontEndSrc/js/main.js ***!
+  \********************************/
 /*! no static exports found */
 /*! all exports used */
 /***/ (function(module, exports) {
 
-eval("class Test {\n  constructor() {\n    this.main = () => {\n      console.log(swag);\n    };\n  }\n\n}\n\nTest.main();\n\n//# sourceURL=webpack:///./assets/js/main.js?");
+eval("class Test {\n  constructor() {\n    this.main = () => {\n      console.log(swag);\n    };\n  }\n\n}\n\nTest.main();\n\n//# sourceURL=webpack:///./frontEndSrc/js/main.js?");
 
 /***/ })
 
