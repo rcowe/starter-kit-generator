@@ -1,56 +1,47 @@
-const http = require('http'); // The node http module allow you to create servers
-const fs = require('fs'); // The node file system module allows you to create files and interact with file system
-const path = require('path'); // path allows you to get the path of a folder etc.
-const PORT = 8080;
+// Dependencies
+const express = require('express')
+const mongoose = require('mongoose')
+const app = express()
+const db = mongoose.connection
 
-const public = __dirname + '/public'
+// Environment Variables
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/merncrud'
+const PORT = process.env.PORT || 8080
 
-http.createServer(function (req, res) {
-	let filePath = public + req.url;
-	if (filePath == public + '/') {
-	  filePath = public + '/index.html';
-	}
-  filePath = filePath.split('?')[0]
+// Connect to Mongo
+mongoose.connect(mongoURI, { useNewUrlParser: true },
+  () => console.log('MongoDB connection established:', mongoURI)
+)
 
-	let extName = String(path.extname(filePath)).toLowerCase();
-	const mimeTypes = {
-	'.html': 'text/html',
-        '.js': 'text/javascript',
-        '.css': 'text/css',
-        '.json': 'application/json',
-        '.png': 'image/png',
-        '.jpg': 'image/jpg',
-        '.gif': 'image/gif',
-        '.svg': 'image/svg+xml',
-        '.wav': 'audio/wav',
-        '.mp4': 'video/mp4',
-        '.woff': 'application/font-woff',
-        '.ttf': 'application/font-ttf',
-        '.eot': 'application/vnd.ms-fontobject',
-        '.otf': 'application/font-otf',
-        '.wasm': 'application/wasm'
-	};
+// Error / Disconnection
+db.on('error', err => console.log(err.message + ' is Mongod not running?'))
+db.on('disconnected', () => console.log('mongo disconnected'))
 
-	let contentType = mimeTypes[extName] || 'application/octet-stream';
-	fs.readFile(filePath, function(error, content) {
-	if (error) {
-	  if(error.code == 'ENOENT') {
-	    fs.readFile(public + '/404.html', function(error, content) {
-	      res.writeHead(404, {'Content-Type': 'text/html'});
-	      res.end(content, 'utf-8');
-	    });
-	  }
-	  else {
-	    res.writeHead(500);
-	    res.end('Sorry, you got an error bro here it is'+error.code+' ..\n');
-	  }
-	}
-	else {
-	   res.writeHead(200, { 'Content-Type': contentType });
-	   res.end(content, 'utf-8');
-	  }
-	});
-}).listen(PORT);
+// Middleware
+app.use(express.urlencoded({ extended: false }))// extended: false - does not allow nested objects in query strings
+app.use(express.json())// returns middleware that only parses JSON
 
-console.log(`Server started! Listening on port: ${PORT}`);
-// basic node server without express serving Hello World
+app.use(express.static('public'))
+
+app.use(function(req, res, next) {
+res.header(“Access-Control-Allow-Origin”, “*”);
+res.header(“Access-Control-Allow-Methods”, “GET,PUT,POST,DELETE”);
+res.header(
+“Access-Control-Allow-Headers”,
+“Origin, X-Requested-With, Content-Type, Accept”
+);
+next();
+});
+
+// Routes
+const todosController = require('./backendSrc/controllers/todos.js')
+app.use('/api/todos', todosController)
+
+// this will catch any route that doesn't exist
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + './public/index.html'));
+})
+
+app.listen(PORT, () => {
+  console.log('Let\'s get things done on port', PORT)
+})

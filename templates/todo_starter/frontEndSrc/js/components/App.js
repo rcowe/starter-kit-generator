@@ -1,3 +1,6 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
 class App extends React.Component {
 	state = {
 		todos: [],
@@ -5,20 +8,24 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
-		fetch('/todos').then((response) => response.json()).then((todos) =>
-			this.setState({
-				todos: todos
-			})
-		);
+		console.log('componentDidMount');
+		fetch('/api/todos')
+			.then(response => response.json())
+			.then(todos => {
+				console.log(todos);
+				this.setState({
+					todos: todos
+				});
+			});
 	}
 
-	handleChange = (event) => {
+	handleChange = event => {
 		this.setState({ [event.target.id]: event.target.value });
 	};
 
-	handleSubmit = (event) => {
+	handleSubmit = event => {
 		event.preventDefault();
-		fetch('/todos', {
+		fetch('/api/todos', {
 			body: JSON.stringify({ description: this.state.description }),
 			method: 'POST',
 			headers: {
@@ -26,31 +33,34 @@ class App extends React.Component {
 				'Content-Type': 'application/json'
 			}
 		})
-			.then((createdToDo) => {
+			.then(createdToDo => {
 				return createdToDo.json();
 			})
-			.then((jsonedToDo) => {
+			.then(jsonedToDo => {
 				this.setState({
 					description: '',
-					todos: [ jsonedToDo, ...this.state.todos ]
+					todos: [jsonedToDo, ...this.state.todos]
 				});
 			})
-			.catch((error) => console.log(error));
+			.catch(error => console.log(error));
 	};
 
 	deleteToDo = (id, index) => {
-		fetch('todos/' + id, {
+		fetch('/api/todos/' + id, {
 			method: 'DELETE'
-		}).then((data) => {
+		}).then(data => {
 			this.setState({
-				todos: [ ...this.state.todos.slice(0, index), ...this.state.todos.slice(index + 1) ]
+				todos: [
+					...this.state.todos.slice(0, index),
+					...this.state.todos.slice(index + 1)
+				]
 			});
 		});
 	};
 
 	updateToDo = (todo, index) => {
 		todo.complete = !todo.complete;
-		fetch('todos/' + todo._id, {
+		fetch('/api/todos/' + todo._id, {
 			body: JSON.stringify(todo),
 			method: 'PUT',
 			headers: {
@@ -58,23 +68,30 @@ class App extends React.Component {
 				'Content-Type': 'application/json'
 			}
 		})
-			.then((updateToDo) => updateToDo.json())
-			.then((jsonedToDo) => {
-				fetch('/todos').then((response) => response.json()).then((todos) => {
-					this.setState({
-						todos: todos
+			.then(updateToDo => updateToDo.json())
+			.then(jsonedToDo => {
+				fetch('/api/todos')
+					.then(response => response.json())
+					.then(todos => {
+						this.setState({
+							todos: todos
+						});
 					});
-				});
 			});
 	};
 
 	render() {
 		return (
 			<div>
-				<h1>To do List:</h1>
+				<h1>To do List App:</h1>
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="description">Description</label>
-					<input type="text" value={this.state.description} onChange={this.handleChange} id="description" />
+					<input
+						type="text"
+						value={this.state.description}
+						onChange={this.handleChange}
+						id="description"
+					/>
 					<input type="submit" />
 				</form>
 				<h2>{this.state.description}</h2>
@@ -83,7 +100,10 @@ class App extends React.Component {
 						{this.state.todos.map((todo, index) => {
 							return (
 								<tr>
-									<td className={todo.complete ? 'complete' : ''}> {todo.description} </td>
+									<td className={todo.complete ? 'complete' : ''}>
+										{' '}
+										{todo.description}{' '}
+									</td>
 									<td onClick={() => this.deleteToDo(todo._id, index)}> X </td>
 									{/* <td> complete </td> */}
 									<td onClick={() => this.updateToDo(todo, index)}>

@@ -6,7 +6,7 @@ const db = mongoose.connection
 
 // Environment Variables
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/merncrud'
-const PORT = process.env.PORT || 3004
+const PORT = process.env.PORT || 8000
 
 // Connect to Mongo
 mongoose.connect(mongoURI, { useNewUrlParser: true },
@@ -24,11 +24,11 @@ app.use(express.json())// returns middleware that only parses JSON
 
 // Routes
 const todosController = require('./backendSrc/controllers/todos.js')
-app.use('/todos', todosController)
+app.use('/api/todos', todosController)
 
 // this will catch any route that doesn't exist
 app.get('*', (req, res) => {
-  res.status(404).json('Sorry, page not found')
+  res.sendFile(path.join(__dirname + './public/index.html'));
 })
 
 app.listen(PORT, () => {
