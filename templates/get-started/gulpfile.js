@@ -34,21 +34,8 @@ gulp.task('default', (cb) => {
 		console.log(stderr);
 		cb(err);
 	});
-	gulp.watch('./frontEndSrc/scss/**/*', gulp.task('styles'));
-	gulp.watch('./frontEndSrc/js/**/*', gulp.task('webpack'));
-	gulp
-		.watch([
-			'./public/**/*',
-			'./public/*'
-		])
-		.on('change', reload);
-		cb()
-});
-
-// This is to watch your files if you still have your server running
-gulp.task('watch-proxy', (cb) => {
-	gulp.watch('./frontEndSrc/scss/**/*',  gulp.task('styles'));
-	gulp.watch('./frontEndSrc/js/**/*', gulp.task('webpack'));
+	gulp.watch('./assets/scss/**/*', gulp.task('styles'));
+	gulp.watch('./assets/js/**/*', gulp.task('webpack'));
 	gulp
 		.watch([
 			'./public/**/*',
@@ -60,11 +47,27 @@ gulp.task('watch-proxy', (cb) => {
 		cb()
 });
 
+// This is to watch your files if you still have your server running
+gulp.task('watch-proxy', (cb) => {
+	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
+	gulp.watch('./src/compnents/**/*', gulp.task('webpack'));
+	gupp.watch('./src/main.js',gulp.task('webpack'))
+	gulp
+		.watch([
+			'./public/**/*',
+			'./public/*',
+			'!public/js/**/.#*js',
+			'!public/css/**/.#*css'
+		])
+		.on('change', reload);
+		cb()
+});
+
 
 // Explanation for Students ---- This is compiles our styles
 gulp.task('styles', (cb) => {
 	gulp
-		.src('frontEndSrc/scss/**/*.scss')
+		.src('src/scss/**/*.scss')
 		.pipe(
 			sass({
 				outputStyle: 'compressed'

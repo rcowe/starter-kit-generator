@@ -8,8 +8,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = env => {
 	return {
 		entry: {
-			App: './frontEndSrc/js/components/App.js',
-			main: './frontEndSrc/js/main.js'
+			App: './src/components/App.js',
+			main: './src/main.js'
 		},
 		output: {
 			path: path.resolve(__dirname, 'public/js/dist'),
@@ -42,7 +42,7 @@ module.exports = env => {
 			new HtmlWebpackPlugin({
 				inject: true,
 				hash: true,
-				template: './frontEndSrc/index.html',
+				template: './src/index.html',
 				children: false,
 				filename: '../../index.html'
 			}),
