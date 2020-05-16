@@ -1,5 +1,5 @@
-# Dev-Starter-Kit UNDER CONSTRUCTION
-This Starter Kit is being created for New Web Developers that want to get started with VUE, and react
+# Big Poppa Code React Starter Kit
+This Starter Kit is being created for New Web Developers that want to get started with react
 
 Most people use a CLI Tool like Vue-Cli or Create React App and no idea what these things are doing
 
@@ -14,7 +14,7 @@ I will base all my tutorials on this Starter Kit.
 
 I am Arthur Bernier Jr. I work as freelance fullstack web developer and attraction marketing consultant specializing in supporting e-commerce brands,
 subscription box sites, social activists, religious/non-profit leaders and creative entrepreneurs(i.e. barbers, artists, musicians, stylists, models and photographers).
-I have a passion for helping entrepreneurs reach their perfect audience and helping you communicate to that audience in a way that makes them know, like and trust you.
+I have a passion for helping entrepreneurs reach their perfect audience and helping you communicate to that audience in a way that makes them know, like and trust you. I also am a Full-Time Instructor at General Assembly as well as a Software Engineer at Blavity Inc.
 
 
 # My Favorite Online Instructors
@@ -40,21 +40,14 @@ I have a passion for helping entrepreneurs reach their perfect audience and help
 
  **Install all the node packages**
 On the root of this project run on your terminal (if you want you can do this with yarn but thats optional)
-```bash
-yarn install
-```
-### or
-```bash
-npm install
-```
 
 **Start the dev server**
 ```bash
-yarn watch
+npm run dev
 ```
 ### or
 ```bash
-npm run watch
+yarn dev
 ```
 
 **Start the dev server with proxy**
@@ -73,4 +66,4 @@ npm run build
 ```
 
 ## Instructions to run starter kit on any backend
-Coming Soon
+Coming Soon but all static files are built to public folder and the project is set up for easy deployment on Heroku with npm start
