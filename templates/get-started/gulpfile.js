@@ -34,8 +34,9 @@ gulp.task('default', (cb) => {
 		console.log(stderr);
 		cb(err);
 	});
-	gulp.watch('./assets/scss/**/*', gulp.task('styles'));
-	gulp.watch('./assets/js/**/*', gulp.task('webpack'));
+	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
+	gulp.watch('./src/components/**/*', gulp.task('webpack'));
+	gulp.watch('./src/main.js',gulp.task('webpack'))
 	gulp
 		.watch([
 			'./public/**/*',
