@@ -2,11 +2,9 @@
   This project is made to allow you to have your own template generator locally for your react projects and be a light weight environment to get comfortable with REACT and SASS.
 
 # To start
-1. clone the repository
-2. add any template that you want to the templates directory
-3. run ``` npm i -g big-poppa-code-react-starter ``` in the root of the project and it will add the project globally onto your computer
-4. from the command line run ``` lets-code ``` in the parent folder that you desire the project to be in.
-5. Feel awesome
+1. run ``` npm i -g big-poppa-code-react-starter ``` in the root of the project and it will add the project globally onto your computer
+1. from the command line run ``` lets-code ``` in the parent folder that you desire the project to be in.
+1. Feel awesome
 
 # Big Poppa Code React Starter Kit
 This Starter Kit is being created for New Web Developers that want to get started with react
