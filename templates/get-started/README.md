@@ -29,17 +29,10 @@ I have a passion for helping entrepreneurs reach their perfect audience and help
 
 ## Steps
 
-**Download or Pull This Repo**
-	Top of this page you can see where it says clone or download
-
- **Install Node**
-	https://nodejs.org/en/
-
-**Download Atom (OPTIONAL)**
-	https://atom.io/
-
- **Install all the node packages**
-On the root of this project run on your terminal (if you want you can do this with yarn but thats optional)
+**Install Gulp Globally**
+```bash
+npm i -g gulp-cli
+```
 
 **Start the dev server**
 ```bash
@@ -65,5 +58,11 @@ yarn build
 npm run build
 ```
 
-## Instructions to run starter kit on any backend
-Coming Soon but all static files are built to public folder and the project is set up for easy deployment on Heroku with npm start
+**Deploy for production script**
+```bash
+npm start
+```
+### or
+```bash
+yarn start
+```

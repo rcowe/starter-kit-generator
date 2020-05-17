@@ -2,9 +2,13 @@
   This project is made to allow you to have your own template generator locally for your react projects and be a light weight environment to get comfortable with REACT and SASS.
 
 # To start
-1. run ``` npm i -g big-poppa-code-react-starter ``` in the root of the project and it will add the project globally onto your computer
-1. from the command line run ``` lets-code ``` in the parent folder that you desire the project to be in.
-1. Feel awesome
+1. run ``` npm i -g big-poppa-code-react-starter ``` in your commandline and the ```lets-code``` command will will be added globally onto your computer
+1. from the command line run ``` lets-code ``` in the parent folder that you desire the project to be in. i.e. if you put your projects in a projects folder run ``` lets-code``` in your projects directory
+1. You will be prompted to confirm you want to build a react project, confirm that by choosing ```get started``` or quit by pressing CTRL + C.
+1. You will the be prompted to choose a project name, this will be the name of the directory your project is built in.
+1. After choosing the project name, You will then see some terminal output while the template is copied and npm install and npm audit are ran in the background. (note you don't have to install the packages they are added by default)
+1. Once the project is built you will see any npm output, including vulnerabilities, and instructions on how to start your project.
+1. cd into your project from the commandline and Feel awesome
 
 # Big Poppa Code React Starter Kit
 This Starter Kit is being created for New Web Developers that want to get started with react
@@ -37,17 +41,10 @@ I have a passion for helping entrepreneurs reach their perfect audience and help
 
 ## Steps
 
-**Download or Pull This Repo**
-	Top of this page you can see where it says clone or download
-
- **Install Node**
-	https://nodejs.org/en/
-
-**Download Atom (OPTIONAL)**
-	https://atom.io/
-
- **Install all the node packages**
-On the root of this project run on your terminal (if you want you can do this with yarn but thats optional)
+**Install Gulp Globally**
+```bash
+npm i -g gulp-cli
+```
 
 **Start the dev server**
 ```bash
@@ -71,6 +68,15 @@ yarn build
 
 ```bash
 npm run build
+```
+
+**Deploy for production script**
+```bash
+npm start
+```
+### or
+```bash
+yarn start
 ```
 
 ## Instructions to run starter kit on any backend
