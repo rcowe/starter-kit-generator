@@ -3,4 +3,5 @@ class Test {
 		console.log(swag);
 	};
 }
-Test.main();
+const test = new Test
+test.main();

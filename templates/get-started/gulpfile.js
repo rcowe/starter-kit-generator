@@ -52,7 +52,7 @@ gulp.task('default', (cb) => {
 gulp.task('watch-proxy', (cb) => {
 	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
 	gulp.watch('./src/compnents/**/*', gulp.task('webpack'));
-	gupp.watch('./src/main.js',gulp.task('webpack'))
+	gulp.watch('./src/main.js',gulp.task('webpack'))
 	gulp
 		.watch([
 			'./public/**/*',
