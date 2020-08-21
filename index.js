@@ -64,7 +64,7 @@ const QUESTIONS = [
               -----> npm i -g gulp-cli <----- \n
               to start the app you can run \n
               ----> npm run dev <----- \n
-              you can hack the project yourself by editing  \n
+              If your Hungry For More \n you can hack the project yourself by editing  \n
               ------------> .babelrc (controls babel), gulpfile.js (controls gulp), webpack.config.js (controls webpack) <--------------
               `)
               consola.success(`happy coding ....... `)
