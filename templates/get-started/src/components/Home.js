@@ -27,35 +27,23 @@ export default function Home(props) {
 		<div className="Page">
 			<div className="column">
 				<h2 className="heading winnie">Winnie</h2>
-				<ul id="winnie-list">
-					<li>1 Card</li>
-					<li>43 Card</li>
-				</ul>
-				<button onClick={addWinnie}>Add A Card</button>
+				<ul id="winnie-list"></ul>
+				<button onClick={addWinnie}>Add A Task</button>
 			</div>
 			<div className="column">
 				<h2 className="heading bob">Bob</h2>
-				<ul id="bob-list">
-					<li>1 Card</li>
-					<li>3 Card</li>
-				</ul>
-				<button onClick={addBob}>Add A Card</button>
+				<ul id="bob-list"></ul>
+				<button onClick={addBob}>Add A Task</button>
 			</div>
 			<div className="column">
 				<h2 className="heading thomas">Thomas</h2>
-				<ul id="thomas-list">
-					<li>1 Card</li>
-					<li>2 Card</li>
-				</ul>
-				<button onClick={addThomas}>Add A Card</button>
+				<ul id="thomas-list"></ul>
+				<button onClick={addThomas}>Add A Task</button>
 			</div>
 			<div className="column">
 				<h2 className="heading george">George</h2>
-				<ul id="george-list">
-					<li>1 Card</li>
-					<li>2 Card</li>
-				</ul>
-				<button onClick={addGeorge}>Add A Card</button>
+				<ul id="george-list"></ul>
+				<button onClick={addGeorge}>Add A Task</button>
 			</div>
 		</div>
 	);
@@ -97,7 +85,7 @@ export default function Home(props) {
 						<li>1 Card</li>
 						<li>43 Card</li>
 					</ul>
-					<button onClick={this.addWinnie}>Add A Card</button>
+					<button onClick={this.addWinnie}>Add A Task</button>
 				</div>
 				<div className="column">
 					<h2 className="heading bob">Bob</h2>
@@ -105,7 +93,7 @@ export default function Home(props) {
 						<li>1 Card</li>
 						<li>3 Card</li>
 					</ul>
-					<button onClick={this.addBob}>Add A Card</button>
+					<button onClick={this.addBob}>Add A Task</button>
 				</div>
 				<div className="column">
 					<h2 className="heading thomas">Thomas</h2>
@@ -113,7 +101,7 @@ export default function Home(props) {
 						<li>1 Card</li>
 						<li>2 Card</li>
 					</ul>
-					<button onClick={this.addThomas}>Add A Card</button>
+					<button onClick={this.addThomas}>Add A Task</button>
 				</div>
 				<div className="column">
 					<h2 className="heading george">George</h2>
@@ -121,7 +109,7 @@ export default function Home(props) {
 						<li>1 Card</li>
 						<li>2 Card</li>
 					</ul>
-					<button onClick={this.addGeorge}>Add A Card</button>
+					<button onClick={this.addGeorge}>Add A Task</button>
 				</div>
 			</div>
 		);
