@@ -2,6 +2,14 @@
 @import "reset";
 
 
+  $winnie: #8E6E95;
+
+  $bob: #39A59C;
+
+  $thomas: #344759;
+
+  $george: #E8741E;
+
 
 body {
   line-height: 1;
@@ -121,16 +129,16 @@ h1 {
     }
   }
   .winnie{
-    background-color: #8E6E95;
+    background-color: $winnie;
   }
   .bob{
-    background-color: #39A59C;
+    background-color: $bob;
   }
   .thomas{
-    background-color: #344759;
+    background-color: $thomas;
   }
   .george{
-    background-color: #E8741E;
+    background-color: $george;
   }
   button{
     margin: 3rem auto 0.5rem;
@@ -139,5 +147,78 @@ h1 {
     height: 3rem;
     font-size: 2rem;
     box-shadow: 0 4px 8px rgba(#8E6E95, 0.2);
+  }
+  .task-form{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    label{
+      width:100%;
+    }
+    input{
+      margin-left: 1rem;
+    }
+    button{
+      margin: 1rem auto;
+    }
+  }
+  .winnieColumn{
+    .task-form{
+      label{
+        display: flex;
+        justify-content: space-between;
+        span{
+        background-color: $winnie;
+        color: white;
+        display: block;
+        padding: .2rem 1rem;
+      }
+      }
+    }
+  }
+  .bobColumn{
+    .task-form{
+      label{
+        display: flex;
+        justify-content: space-between;
+        span{
+        background-color: $bob;
+        color: white;
+        display: block;
+        padding: .2rem 1rem;
+      }
+      }
+    }
+  }
+
+  .thomasColumn{
+    .task-form{
+      label{
+        display: flex;
+        justify-content: space-between;
+        span{
+        background-color: $thomas;
+        color: white;
+        display: block;
+        padding: .2rem 1rem;
+      }
+      }
+    }
+  }
+
+  .georgeColumn{
+    .task-form{
+      label{
+        display: flex;
+        justify-content: space-between;
+        span{
+        background-color: $george;
+        color: white;
+        display: block;
+        padding: .2rem 1rem;
+      }
+      }
+    }
   }
 }
