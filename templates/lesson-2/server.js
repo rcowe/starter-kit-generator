@@ -24,6 +24,7 @@ app.get('/test', (req, res)=>{
 		info: 'Not that much'
 	})
 })
+app.use('/api', require('./controllers/fruits.js'))
 /* Controller Ends here */
 //LISTENER
 app.listen(PORT, () => {
