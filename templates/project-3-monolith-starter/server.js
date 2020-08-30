@@ -1,13 +1,51 @@
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 8000;
+const mongoose = require('mongoose');
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fruits_api';
+const db = mongoose.connection;
+
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+db.on('open', () => {
+    console.log('Mongo is Connected');
+});
+/* Middleware */
+app.use(express.json());
+app.use(express.static('public'))
+
+/* Controller Goes Here Remove the tes*/
+app.get('/test', (req, res)=>{
+	res.status(200).json({
+		website: 'My Website',
+		info: 'Not that much'
+	})
+})
+/* Controller Ends here */
+//LISTENER
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+});
+
+
+
+/* Vanilla Node Server
 const http = require('http'); // The node http module allow you to create servers
 const fs = require('fs'); // The node file system module allows you to create files and interact with file system
 const path = require('path'); // path allows you to get the path of a folder etc.
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
+
+const public = __dirname + '/public'
 
 http.createServer(function (req, res) {
-	let filePath = '.' + req.url;
-	if (filePath == './') {
-	  filePath = '/index.html';
+	let filePath = public + req.url;
+	if (filePath == public + '/') {
+	  filePath = public + '/index.html';
 	}
+  filePath = filePath.split('?')[0]
 
 	let extName = String(path.extname(filePath)).toLowerCase();
 	const mimeTypes = {
@@ -32,7 +70,7 @@ http.createServer(function (req, res) {
 	fs.readFile(filePath, function(error, content) {
 	if (error) {
 	  if(error.code == 'ENOENT') {
-	    fs.readFile('./404.html', function(error, content) {
+	    fs.readFile(public + '/404.html', function(error, content) {
 	      res.writeHead(404, {'Content-Type': 'text/html'});
 	      res.end(content, 'utf-8');
 	    });
@@ -50,4 +88,5 @@ http.createServer(function (req, res) {
 }).listen(PORT);
 
 console.log(`Server started! Listening on port: ${PORT}`);
-// basic node server without express serving Hello World
+// basic node server without express serving
+*/

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 function App(props) {
-	const [name, upDateName] = useState('Arthur');
+	const [name, upDateName] = useState('Fruits');
 	return (
 		<div className="Page-wrapper">
-			<h2>Arete App</h2>
-			<h3>{name}</h3>
+			<h1>Arete App</h1>
+			<h2>{name} 2</h2>
 		</div>
 	);
 }

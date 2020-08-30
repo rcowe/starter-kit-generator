@@ -8,6 +8,9 @@ const gulp = require('gulp');
 // Explanation for Students ---- This is for compiling SASS, we haven't learned SASS yet but this is as good a chance as any to to talk about how we could compile it.
 const sass = require('gulp-sass');
 
+// Use Nodemon programatically
+const nodemon = require('gulp-nodemon');
+
 // Explanation for Students ---- This is for those pesky experimental features of css that are not available in all browsers without prefixes like webkit and moz
 const autoprefixer = require('gulp-autoprefixer');
 
@@ -24,25 +27,32 @@ var exec = require('child_process').exec;
 // Explanation for Students ---- This is the brain child for our self made development server
 
 gulp.task('default', (cb) => {
-	browserSync.init({
-		server: './public',
-		notify: true,
-		open: true //change this to true if you want the broser to open automatically
-	});
 	exec('npm run dev:webpack', function(err, stdout, stderr) {
 		console.log(stdout);
 		console.log(stderr);
 		cb(err);
 	});
-	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
+	nodemon({
+	 script: 'server.js',
+	 env: { 'NODE_ENV': 'development'}
+ });
+	browserSync.init({
+	 proxy: {
+		 target: 'http://localhost:8000',
+		 ws: true
+	 },
+	 serveStatic: ['./public']
+	});
+ 	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
 	gulp.watch('./src/components/**/*', gulp.task('webpack'));
 	gulp.watch('./src/*', gulp.task('webpack'))
 	gulp
 		.watch([
 			'./public/**/*',
 			'./public/*',
-			'public/js/**/.#*js',
-			'public/css/**/.#*css'
+			'./public/js/**/.#*js',
+			'./public/css/**/.#*css',
+			'./src/**/*'
 		])
 		.on('change', reload);
 		cb()
