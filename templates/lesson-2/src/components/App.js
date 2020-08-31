@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
-function App(props) {
+export default function App(props) {
 	const [name, updateName] = useState('Fruits App');
 	/*new fruit*/
 	const [newFruit, updateNewFruit] = useState({
@@ -82,12 +82,12 @@ function App(props) {
 			</form>
 			{allFruits.length > 0 &&
 				allFruits.map(fruit => {
-					return <div key={fruit._id}>{fruit.name}</div>;
+					return (
+						<Link to={`/${fruit._id}`}>
+							<div key={fruit._id}>{fruit.name}</div>
+						</Link>
+					);
 				})}
 		</div>
 	);
 }
-
-const app = document.getElementById('app');
-
-ReactDOM.render(<App />, app);

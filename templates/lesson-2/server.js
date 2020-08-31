@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
+const path = require('path');
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fruits_api';
 const db = mongoose.connection;
@@ -17,16 +18,25 @@ db.on('open', () => {
 app.use(express.json());
 app.use(express.static('public'))
 
-/* Controller Goes Here Remove the tes*/
+/* Controller Goes Here Remove the test*/
 app.get('/test', (req, res)=>{
 	res.status(200).json({
 		website: 'My Website',
 		info: 'Not that much'
 	})
 })
+
 app.use('/api', require('./controllers/fruits.js'))
 /* Controller Ends here */
 //LISTENER
+
+/*Catch routes nested two levels deep */
+app.use('/:id/', express.static('public'))
+/* Catch routes nested two levels deep */
+
+app.get('*', (req, res)=>{
+  res.sendFile(path.resolve(`${__dirname}/public/index.html`));
+})
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
