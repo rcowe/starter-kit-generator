@@ -90,6 +90,8 @@ const QUESTIONS = [
           const contents = fs.readFileSync(origFilePath, 'utf8');
           if (file === '.npmignore') {
             file = '.gitignore';
+          } else if ( file === '._env'){
+            file = '.env'
           }
           const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
           fs.writeFileSync(writePath, contents, 'utf8');

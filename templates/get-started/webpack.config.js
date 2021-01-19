@@ -8,7 +8,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = env => {
 	return {
 		entry: {
-			App: './src/components/App.js',
+			App: './src/index.js',
 			main: './src/main.js'
 		},
 		output: {

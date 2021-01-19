@@ -8,6 +8,9 @@ const gulp = require('gulp');
 // Explanation for Students ---- This is for compiling SASS, we haven't learned SASS yet but this is as good a chance as any to to talk about how we could compile it.
 const sass = require('gulp-sass');
 
+// Use Nodemon programatically
+const nodemon = require('gulp-nodemon');
+
 // Explanation for Students ---- This is for those pesky experimental features of css that are not available in all browsers without prefixes like webkit and moz
 const autoprefixer = require('gulp-autoprefixer');
 
@@ -24,46 +27,47 @@ var exec = require('child_process').exec;
 // Explanation for Students ---- This is the brain child for our self made development server
 
 gulp.task('default', (cb) => {
-	browserSync.init({
-		server: './public',
-		notify: true,
-		open: true //change this to true if you want the broser to open automatically
+	// Compile Styles
+	exec('npm run styles', function(err, stdout, stderr) {
+		console.log(stdout);
+		console.log(stderr);
+		cb(err);
 	});
+	// Compile REACT
 	exec('npm run dev:webpack', function(err, stdout, stderr) {
 		console.log(stdout);
 		console.log(stderr);
 		cb(err);
 	});
-	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
+	// SERVE BACKEND
+	nodemon({
+	 script: 'server.js',
+	 env: { 'NODE_ENV': 'development'}
+ });
+ // SERVE  FRONT END WITH PROXY TO BACKEND
+	browserSync.init({
+	 proxy: {
+		 target: 'http://localhost:8000',
+		 ws: true
+	 },
+	 serveStatic: ['./public']
+	});
+	// SET UP WATCJERS TO LISTEN TO CHANGES IN FILES
+ 	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
 	gulp.watch('./src/components/**/*', gulp.task('webpack'));
 	gulp.watch('./src/*', gulp.task('webpack'))
+	// LISTEN FOR WHEN TO RELOAD PAGES
 	gulp
 		.watch([
 			'./public/**/*',
 			'./public/*',
-			'public/js/**/.#*js',
-			'public/css/**/.#*css'
+			'./public/js/**/.#*js',
+			'./public/css/**/.#*css',
+			'./src/**/*'
 		])
 		.on('change', reload);
 		cb()
 });
-
-// This is to watch your files if you still have your server running
-gulp.task('watch-proxy', (cb) => {
-	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
-	gulp.watch('./src/components/**/*', gulp.task('webpack'));
-	gulp.watch('./src/main.js',gulp.task('webpack'))
-	gulp
-		.watch([
-			'./public/**/*',
-			'./public/*',
-			'!public/js/**/.#*js',
-			'!public/css/**/.#*css'
-		])
-		.on('change', reload);
-		cb()
-});
-
 
 // Explanation for Students ---- This is compiles our styles
 gulp.task('styles', (cb) => {
@@ -76,40 +80,13 @@ gulp.task('styles', (cb) => {
 		)
 		.pipe(
 			autoprefixer({
-				browsers: ['last 2 versions']
+				cascade: false
 			})
 		)
 		.pipe(gulp.dest('./public/css'))
 		.pipe(browserSync.stream());
 		cb()
 });
-
-
-// Explanation for Students ---- This is for if you just want to see whats in your public folder
-
-gulp.task('browser-sync', function(cb) {
-	browserSync.init({
-		server: './public',
-		notify: false,
-		open: false //change this to true if you want the broser to open automatically
-	});
-	cb()
-});
-
-
-// Explanation for Students ---- This is for if you want run 2 servers
-gulp.task('browser-sync-proxy', function(cb) {
-	// THIS IS FOR SITUATIONS WHEN YOU HAVE ANOTHER SERVER RUNNING
-	browserSync.init({
-		proxy: {
-			target: 'http://localhost:3333/', // can be [virtual host, sub-directory, localhost with port]
-			ws: true // enables websockets
-		}
-		// serveStatic: ['.', './public']
-	});
-	cb()
-});
-
 
 
 // Explanation for Students ---- This is for the development build
