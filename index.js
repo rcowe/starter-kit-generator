@@ -92,13 +92,13 @@ const QUESTIONS = [
           const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
           fs.writeFileSync(writePath, contents, 'utf8');
           let newFilePath
-          if (file === '._gitignore') {
+          if (file === '_gitignore') {
             newFilePath = '.gitignore';
             fs.renameSync(writePath, `${CURR_DIR}/${newProjectPath}/${newFilePath}`);
-          } else if ( file === '._env'){
+          } else if ( file === '_env'){
             newFilePath = '.env';
             fs.renameSync(writePath, `${CURR_DIR}/${newProjectPath}/${newFilePath}`);
-          } 
+          }
 
         } else if (stats.isDirectory()) {
           fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
