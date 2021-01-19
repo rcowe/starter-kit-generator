@@ -2,19 +2,19 @@
 @import "reset";
 
 
-  $winnie: #8E6E95;
+  $german: #8E6E95;
 
-  $bob: #39A59C;
+  $kellie: #39A59C;
 
-  $thomas: #344759;
+  $allegra: #344759;
 
-  $george: #E8741E;
+  $nicole: #E8741E;
 
 
 body {
   line-height: 1;
   background: white;
-  color: $bob;
+  color: $kellie;
 }
 
 ol,
@@ -128,17 +128,17 @@ h1 {
       }
     }
   }
-  .winnie{
-    background-color: $winnie;
+  .german{
+    background-color: $german;
   }
-  .bob{
-    background-color: $bob;
+  .kellie{
+    background-color: $kellie;
   }
-  .thomas{
-    background-color: $thomas;
+  .allegra{
+    background-color: $allegra;
   }
-  .george{
-    background-color: $george;
+  .nicole{
+    background-color: $nicole;
   }
   button{
     margin: 3rem auto 0.5rem;
@@ -163,13 +163,13 @@ h1 {
       margin: 1rem auto;
     }
   }
-  .winnieColumn{
+  .germanColumn{
     .task-form{
       label{
         display: flex;
         justify-content: space-between;
         span{
-        background-color: $winnie;
+        background-color: $german;
         color: white;
         display: block;
         padding: .2rem 1rem;
@@ -177,28 +177,13 @@ h1 {
       }
     }
   }
-  .bobColumn{
+  .kellieColumn{
     .task-form{
       label{
         display: flex;
         justify-content: space-between;
         span{
-        background-color: $bob;
-        color: white;
-        display: block;
-        padding: .2rem 1rem;
-      }
-      }
-    }
-  }
-
-  .thomasColumn{
-    .task-form{
-      label{
-        display: flex;
-        justify-content: space-between;
-        span{
-        background-color: $thomas;
+        background-color: $kellie;
         color: white;
         display: block;
         padding: .2rem 1rem;
@@ -207,13 +192,28 @@ h1 {
     }
   }
 
-  .georgeColumn{
+  .allegraColumn{
     .task-form{
       label{
         display: flex;
         justify-content: space-between;
         span{
-        background-color: $george;
+        background-color: $allegra;
+        color: white;
+        display: block;
+        padding: .2rem 1rem;
+      }
+      }
+    }
+  }
+
+  .nicoleColumn{
+    .task-form{
+      label{
+        display: flex;
+        justify-content: space-between;
+        span{
+        background-color: $nicole;
         color: white;
         display: block;
         padding: .2rem 1rem;
