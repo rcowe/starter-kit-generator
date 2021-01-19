@@ -55,11 +55,6 @@ npm run dev
 yarn dev
 ```
 
-**Start the dev server with proxy**
-```bash
-npm run proxy
-```
-
 **Build files for production**
 ```bash
 yarn build
@@ -81,4 +76,3 @@ yarn start
 
 ## Instructions to run starter kit on any backend
 Coming Soon but all static files are built to public folder and the project is set up for easy deployment on Heroku with npm start
-
