@@ -88,16 +88,17 @@ const QUESTIONS = [
 
         if (stats.isFile()) {
           const contents = fs.readFileSync(origFilePath, 'utf8');
+
+          const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
+          fs.writeFileSync(writePath, contents, 'utf8');
           let newFilePath
           if (file === '._gitignore') {
             newFilePath = '.gitignore';
+            fs.renameSync(writePath, `${CURR_DIR}/${newProjectPath}/${newFilePath}`);
           } else if ( file === '._env'){
             newFilePath = '.env';
-          } else {
-            newFilePath = file;
-          }
-          const writePath = `${CURR_DIR}/${newProjectPath}/${newFilePath}`;
-          fs.writeFileSync(writePath, contents, 'utf8');
+            fs.renameSync(writePath, `${CURR_DIR}/${newProjectPath}/${newFilePath}`);
+          } 
 
         } else if (stats.isDirectory()) {
           fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
