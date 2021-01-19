@@ -89,7 +89,7 @@ const QUESTIONS = [
         if (stats.isFile()) {
           const contents = fs.readFileSync(origFilePath, 'utf8');
           let newFilePath
-          if (file === '.npmignore') {
+          if (file === '._gitignore') {
             newFilePath = '.gitignore';
           } else if ( file === '._env'){
             newFilePath = '.env';
